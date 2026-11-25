@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JPYC PAYMENT | TONOLAB</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  background: #101510;
+  color: #9dff80;
+  font-family: monospace;
+  margin: 0;
+  padding: 24px;
+}
+
+main {
+  max-width: 800px;
+  margin: auto;
+}
+
+header {
+  border-bottom: 1px solid #285c32;
+  padding-bottom: 20px;
+}
+
+h1 {
+  font-size: 32px;
+  letter-spacing: 5px;
+}
+
+.red { color: #ff2945; }
+
+small {
+  letter-spacing: 3px;
+  color: #9dff80;
+}
+
+.panel {
+  border: 1px solid #285c32;
+  padding: 20px;
+  margin-top: 24px;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  background: #050805;
+  border: 1px solid #285c32;
+}
+
+p {
+  color: #d0d8ce;
+  line-height: 1.9;
+  font-size: 14px;
+}
+
+a {
+  display: block;
+  text-align: center;
+  border: 1px solid #285c32;
+  color: #9dff80;
+  padding: 15px;
+  margin-top: 18px;
+  text-decoration: none;
+}
+
+a:hover {
+  background: #9dff80;
+  color: #050805;
+}
+
+.status {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #ff2945;
+}
+
+footer {
+  margin-top: 30px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<header>
+<small>03 / DIGITAL FINANCE</small>
+<h1>TONOL<span class="red">A</span>B</h1>
+</header>
+
+<section class="panel">
+
+<small>PAYMENT SYSTEM</small>
+<h2>JPYC PAYMENT</h2>
+
+<canvas id="payment" width="480" height="240">
+</canvas>
+
+<p class="status">
+● STATUS : UNDER DEVELOPMENT
+</p>
+
+<h3>デジタル決済への取り組み</h3>
+
+<p>
+TONOLABでは、日本円建てステーブルコイン
+「JPYC」を活用したデジタル決済の導入を
+検討しています。
+</p>
+
+<p>
+ブロックチェーン技術を活用し、
+新しい決済手段と柔軟な取引環境の
+構築を目指します。
+</p>
+
+<h3>PAYMENT PLATFORM</h3>
+
+<p>
+決済サービス「uniple」の活用を検討しています。
+現在は導入準備段階であり、
+実際の決済受付は開始していません。
+</p>
+
+<a href="https://uniple.io/?lang=ja"
+target="_blank" rel="noopener">
+UNIPLE / OFFICIAL SITE ↗
+</a>
+
+</section>
+
+<a href="index.html">
+◀ RETURN TO TOP
+</a>
+
+<footer>
+TONOLAB / DIGITAL FINANCE SYSTEM
+</footer>
+
+</main>
+
+<script>
+const canvas = document.getElementById('payment');
+const g = canvas.getContext('2d');
+
+let t = 0;
+
+const GREEN = '#9dff80';
+const WHITE = '#d0d8ce';
+const RED = '#ff2945';
+const GRID = '#285c32';
+const BLACK = '#050805';
+
+function draw() {
+
+  t++;
+
+  g.fillStyle = BLACK;
+  g.fillRect(0, 0, 480, 240);
+
+  g.strokeStyle = GRID;
+  g.lineWidth = 0.5;
+
+  for(let x = 0; x <= 480; x += 20) {
+    g.beginPath();
+    g.moveTo(x, 0);
+    g.lineTo(x, 240);
+    g.stroke();
+  }
+
+  for(let y = 0; y <= 240; y += 20) {
+    g.beginPath();
+    g.moveTo(0, y);
+    g.lineTo(480, y);
+    g.stroke();
+  }
+
+  // PAYMENT TERMINAL
+
+  g.strokeStyle = WHITE;
+  g.lineWidth = 2;
+
+  g.strokeRect(30, 45, 100, 145);
+  g.strokeRect(42, 58, 76, 90);
+
+  // QR STYLE GRAPHIC - DEMO ONLY
+
+  g.fillStyle = WHITE;
+
+  for(let x = 0; x < 9; x++) {
+    for(let y = 0; y < 9; y++) {
+
+      if((x * 7 + y * 13 + x * y) % 5 < 2) {
+        g.fillRect(49 + x * 7, 72 + y * 7, 5, 5);
+      }
+
+    }
+  }
+
+  g.fillStyle = RED;
+  g.fillRect(75, 165, 10, 5);
+
+  // RECEIVER TERMINAL
+
+  g.strokeStyle = WHITE;
+  g.strokeRect(350, 65, 100, 105);
+  g.strokeRect(362, 77, 76, 60);
+
+  g.fillStyle = GREEN;
+  g.font = 'bold 18px monospace';
+  g.fillText('JPYC', 378, 112);
+
+  g.fillStyle = RED;
+  g.fillRect(395, 150, 10, 5);
+
+  // TRANSFER LINE
+
+  g.strokeStyle = GREEN;
+  g.beginPath();
+  g.moveTo(130, 120);
+  g.lineTo(350, 120);
+  g.stroke();
+
+  for(let i = 0; i < 5; i++) {
+
+    const x = 135 + ((t * 1.5 + i * 44) % 210);
+
+    g.fillStyle = GREEN;
+    g.fillRect(x, 116, 8, 8);
+
+  }
+
+  g.fillStyle = GREEN;
+  g.font = 'bold 28px monospace';
+  g.textAlign = 'center';
+  g.fillText('JPYC', 240, 90);
+
+  g.font = '10px monospace';
+  g.fillText('BLOCKCHAIN NETWORK', 240, 155);
+  g.fillText('PAYMENT SIMULATION', 240, 220);
+
+  g.textAlign = 'left';
+
+  requestAnimationFrame(draw);
+
+}
+
+draw();
+</script>
+
+</body>
+</html>
