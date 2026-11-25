@@ -108,7 +108,9 @@ footer {
 aria-label="ドローンの設計図"></canvas>
 </div>
 
-<h1>TONOLAB</h1>
+
+<h1>TONOL<span style="color:#ff2945;">A</span>B</h1>
+
 
 <p>DRONE &amp; CREATIVE TECHNOLOGY</p>
 <p>空から、新しい可能性を。</p>
@@ -205,6 +207,18 @@ function front(x,y,s,col) {
   g.strokeStyle = col;
   g.strokeRect(-10,15,20,16);
   g.strokeRect(-5,19,10,8);
+
+// RED MONO EYE
+const eyeX = Math.round(Math.sin(t / 25) * 3);
+
+g.fillStyle = '#ff294544';
+g.fillRect(eyeX - 4, 19, 8, 8);
+
+g.fillStyle = '#ff2945';
+g.fillRect(eyeX - 2, 21, 4, 4);
+
+g.fillStyle = '#ffc1ca';
+g.fillRect(eyeX - 1, 22, 2, 2);
 
   g.restore();
 }
