@@ -1,524 +1,792 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SERVICE | TONOLAB</title>
+
 <style>
+:root{
+  --bg:#101510;
+  --black:#050805;
+  --green:#9dff80;
+  --grid:#285c32;
+  --white:#d0d8ce;
+  --red:#ff2945;
+}
+
 *{box-sizing:border-box}
+
 body{
-margin:0;
-background:#101810;
-color:#c7dec0;
-font-family:monospace;
+  margin:0;
+  background:var(--bg);
+  color:var(--green);
+  font-family:monospace;
 }
+
 main{
-max-width:1000px;
-margin:auto;
-padding:24px;
+  max-width:1000px;
+  margin:20px auto;
+  padding:20px;
 }
+
 header{
-border-bottom:1px solid #40583d;
-padding-bottom:20px;
-margin-bottom:24px;
+  border:1px solid var(--green);
+  padding:22px;
+  margin-bottom:24px;
 }
-a{color:#b9d5a5;text-decoration:none}
+
 .logo{
-font-size:28px;
-letter-spacing:5px;
+  font-size:32px;
+  font-weight:bold;
+  letter-spacing:6px;
+  margin:18px 0 8px;
 }
+
 .status{
-font-size:11px;
-color:#819b76;
-letter-spacing:2px;
+  font-size:11px;
+  letter-spacing:2px;
 }
+
 h1{
-font-size:30px;
-letter-spacing:5px;
-color:#b9d5a5;
-margin-bottom:8px;
+  font-size:24px;
+  letter-spacing:4px;
 }
-.lead{
-color:#a6b99c;
-margin-bottom:24px;
+
+a{
+  color:var(--green);
+  text-decoration:none;
 }
-.grid{
-display:grid;
-grid-template-columns:repeat(2,minmax(0,1fr));
-gap:16px;
-}
-.card{
-border:1px solid #40583d;
-background:#152017;
-min-width:0;
-}
-.card:last-child{
-grid-column:1/-1;
-}
-.number,.info{padding:12px}
-.number,.en{
-font-size:11px;
-letter-spacing:1px;
-color:#9fbd91;
-}
-canvas{
-display:block;
-width:100%;
-image-rendering:pixelated;
-background:#172820;
-}
-.card:last-child canvas{
-max-height:240px;
-object-fit:contain;
-}
-h2{
-font-size:20px;
-margin:8px 0;
-color:#d1e4c4;
-}
-h3{
-font-size:14px;
-color:#b9d5a5;
-margin:16px 0 4px;
-}
-p{line-height:1.8}
-details{
-margin-top:12px;
-line-height:1.8;
-font-size:14px;
-}
-summary{
-cursor:pointer;
-color:#b9d5a5;
-padding:8px 0;
-border-top:1px solid #40583d;
-}
-footer{
-border-top:1px solid #40583d;
-margin-top:24px;
-padding:24px 0;
-text-align:center;
-font-size:12px;
-color:#819b76;
-}
+
 .back{
-display:inline-block;
-border:1px solid #58744e;
-padding:12px 20px;
-margin:16px 0;
+  display:inline-block;
+  border:1px solid var(--green);
+  padding:12px 18px;
+  font-size:12px;
+  margin-top:16px;
 }
-@media(max-width:560px){
-main{padding:14px}
-.grid{grid-template-columns:1fr}
+
+.back:hover{
+  background:var(--green);
+  color:var(--bg);
 }
+
+.services{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:20px;
+}
+
+.card{
+  border:1px solid var(--green);
+  padding:14px;
+  min-width:0;
+}
+
+.number{
+  font-size:10px;
+  letter-spacing:2px;
+  margin-bottom:10px;
+}
+
+canvas{
+  display:block;
+  width:100%;
+  height:auto;
+  background:var(--black);
+  border:1px solid var(--grid);
+  image-rendering:pixelated;
+}
+
+h2{
+  font-size:20px;
+  margin:16px 0 5px;
+}
+
+.english{
+  font-size:11px;
+  letter-spacing:2px;
+}
+
+details{
+  border-top:1px solid var(--grid);
+  margin-top:18px;
+  padding-top:12px;
+}
+
+summary{
+  cursor:pointer;
+  font-size:12px;
+  padding:8px 0;
+}
+
+h3{
+  font-size:13px;
+  margin-top:18px;
+}
+
+li{
+  color:var(--white);
+  font-size:12px;
+  line-height:2;
+}
+
+ul{
+  padding-left:20px;
+}
+
+footer{
+  border-top:1px solid var(--green);
+  margin-top:30px;
+  padding:20px 0;
+  font-size:11px;
+  letter-spacing:2px;
+}
+
+.sensor{
+  color:var(--red);
+}
+
+@media(max-width:650px){
+  .services{grid-template-columns:1fr}
+  main{padding:14px}
+  .logo{font-size:27px}
+}
+
 </style>
 </head>
+
 <body>
+
 <main>
 
 <header>
-<a href="index.html" class="logo">TONOLAB</a>
-<p class="status">DRONE & CREATIVE TECHNOLOGY</p>
-<a href="index.html">◀ BACK TO HOME</a>
+  <div class="status">● SYSTEM ONLINE</div>
+  <div class="logo">TONOLAB</div>
+  <div class="status">DRONE & CREATIVE TECHNOLOGY</div>
+
+  <h1>SERVICE_</h1>
+
+  <div class="status">
+    FIELD OPERATION DATABASE
+  </div>
+
+  <a class="back" href="index.html">
+    &lt; RETURN TO TOP
+  </a>
 </header>
 
-<div class="status">OPERATION DATABASE</div>
-<h1>SERVICE</h1>
-<p class="lead">空から、産業の可能性を広げる。</p>
+<div class="services">
 
-<div class="grid" id="services"></div>
+<!-- 01 -->
+
+<article class="card">
+  <div class="number">UNIT 01 / AERIAL</div>
+  <canvas width="320" height="160"></canvas>
+
+  <h2>空撮</h2>
+  <div class="english">AERIAL IMAGING</div>
+
+  <details>
+    <summary>DETAILS / 業務詳細</summary>
+
+    <h3>通常空撮</h3>
+    <ul>
+      <li>PV・観光PR映像</li>
+      <li>不動産・建築撮影</li>
+      <li>住宅・商業施設・ホテル</li>
+      <li>竣工撮影</li>
+      <li>花火大会・祭典</li>
+      <li>スポーツ・屋外イベント</li>
+    </ul>
+
+    <h3>特殊空撮</h3>
+    <ul>
+      <li>夜間撮影</li>
+      <li>海上・船上撮影</li>
+      <li>移動体追従撮影</li>
+    </ul>
+  </details>
+</article>
+
+<!-- 02 -->
+
+<article class="card">
+  <div class="number">UNIT 02 / INSPECTION</div>
+  <canvas width="320" height="160"></canvas>
+
+  <h2>点検</h2>
+  <div class="english">INFRASTRUCTURE INSPECTION</div>
+
+  <details>
+    <summary>DETAILS / 業務詳細</summary>
+    <ul>
+      <li>橋梁点検</li>
+      <li>鉄塔点検</li>
+      <li>太陽光パネル点検</li>
+      <li>屋根点検</li>
+      <li>外壁点検</li>
+    </ul>
+  </details>
+</article>
+
+<!-- 03 -->
+
+<article class="card">
+  <div class="number">UNIT 03 / SURVEY</div>
+  <canvas width="320" height="160"></canvas>
+
+  <h2>測量</h2>
+  <div class="english">SURVEY & MAPPING</div>
+
+  <details>
+    <summary>DETAILS / 業務詳細</summary>
+    <ul>
+      <li>写真測量</li>
+      <li>3Dモデル作成</li>
+      <li>オルソ画像作成</li>
+    </ul>
+  </details>
+</article>
+
+<!-- 04 -->
+
+<article class="card">
+  <div class="number">UNIT 04 / AGRICULTURE</div>
+  <canvas width="320" height="160"></canvas>
+
+  <h2>農業</h2>
+  <div class="english">SMART AGRICULTURE</div>
+
+  <details>
+    <summary>DETAILS / 業務詳細</summary>
+    <ul>
+      <li>農薬散布</li>
+      <li>生育調査</li>
+      <li>森林調査</li>
+      <li>養殖場撮影</li>
+    </ul>
+  </details>
+</article>
+
+<!-- 05 -->
+
+<article class="card">
+  <div class="number">UNIT 05 / DISASTER</div>
+  <canvas width="320" height="160"></canvas>
+
+  <h2>防災</h2>
+  <div class="english">DISASTER RESPONSE</div>
+
+  <details>
+    <summary>DETAILS / 業務詳細</summary>
+    <ul>
+      <li>災害調査</li>
+      <li>捜索支援</li>
+      <li>被災状況確認</li>
+      <li>広域調査</li>
+    </ul>
+  </details>
+</article>
+
+<!-- 06 -->
+
+<article class="card">
+  <div class="number">UNIT 06 / SHOW</div>
+  <canvas width="320" height="160"></canvas>
+
+  <h2>ドローンショー</h2>
+  <div class="english">DRONE LIGHT SHOW</div>
+
+  <details>
+    <summary>DETAILS / 業務詳細</summary>
+    <ul>
+      <li>ドローンショー運営支援</li>
+      <li>現場管理</li>
+      <li>記録撮影</li>
+    </ul>
+  </details>
+</article>
+
+<!-- 07 -->
+
+<article class="card">
+  <div class="number">UNIT 07 / SUPPORT</div>
+  <canvas width="320" height="160"></canvas>
+
+  <h2>ドローン導入支援</h2>
+  <div class="english">OPERATION SUPPORT</div>
+
+  <details>
+    <summary>DETAILS / 業務詳細</summary>
+
+    <h3>運用支援</h3>
+    <ul>
+      <li>パイロット派遣</li>
+      <li>飛行計画</li>
+      <li>安全管理</li>
+    </ul>
+
+    <h3>技術支援</h3>
+    <ul>
+      <li>機体選定</li>
+      <li>運用構築</li>
+      <li>技術コンサルティング</li>
+    </ul>
+
+    <h3>教育・訓練</h3>
+    <ul>
+      <li>操縦教育</li>
+      <li>技術指導</li>
+      <li>操縦訓練</li>
+      <li>空撮技術</li>
+      <li>安全講習</li>
+    </ul>
+  </details>
+</article>
+
+</div>
 
 <footer>
-<a class="back" href="index.html">◀ RETURN TO MAIN MENU</a>
-<p>TONOLAB / SYSTEM ONLINE</p>
-<p>© TONOLAB</p>
+  <span class="sensor">●</span>
+  OPTICAL SYSTEM ONLINE
+  <br><br>
+  TONOLAB / SERVICE DATABASE
+  <br><br>
+  <a href="index.html">&lt; RETURN TO TOP</a>
 </footer>
 
 </main>
 
 <script>
-const items=[
-['AERIAL IMAGING','空撮','通常空撮・特殊空撮',[
-['通常空撮',
-'PV・観光PR',
-'不動産・建築撮影',
-'住宅・商業施設・ホテル・竣工撮影',
-'イベント空撮',
-'花火大会・祭典・スポーツ・屋外イベント'],
-['特殊空撮',
-'夜間・海上・船上撮影',
-'移動体追従撮影']
-]],
-['INSPECTION','点検','インフラ・建築物点検',[
-['点検対象',
-'橋梁・鉄塔・太陽光パネル',
-'屋根・外壁']
-]],
-['SURVEY & MAPPING','測量','写真測量・3D解析',[
-['3D解析',
-'写真測量・3Dモデル',
-'オルソ画像生成']
-]],
-['AGRICULTURE','農業','農林水産分野',[
-['農林水産分野',
-'農薬散布・生育調査',
-'森林調査・養殖場撮影']
-]],
-['DISASTER RESPONSE','防災','災害調査・捜索支援',[
-['災害調査・捜索支援',
-'被災状況確認・広域調査']
-]],
-['DRONE SHOW','ドローンショー','ショー運営支援',[
-['運営支援',
-'現場管理・記録撮影']
-]],
-['TECHNICAL SUPPORT','ドローン導入支援','運用・技術・教育',[
-['運用支援',
-'パイロット派遣',
-'飛行計画・安全管理'],
-['導入コンサルティング',
-'機体選定・運用構築',
-'技術コンサルティング'],
-['操縦教育・技術指導',
-'操縦訓練・空撮技術・安全講習']
-]]
+
+(function(){
+
+const BLACK='#050805';
+const GREEN='#9dff80';
+const GRID='#285c32';
+const WHITE='#d0d8ce';
+const RED='#ff2945';
+
+function line(c,points,color=WHITE,w=1){
+  c.strokeStyle=color;
+  c.lineWidth=w;
+  c.beginPath();
+
+  points.forEach((p,i)=>{
+    if(i===0)c.moveTo(p[0],p[1]);
+    else c.lineTo(p[0],p[1]);
+  });
+
+  c.stroke();
+}
+
+function rect(c,x,y,w,h,color){
+  c.fillStyle=color;
+  c.fillRect(
+    Math.round(x),
+    Math.round(y),w,h
+  );
+}
+
+function box(c,x,y,w,h,color=WHITE){
+  c.strokeStyle=color;
+  c.lineWidth=1;
+  c.strokeRect(x,y,w,h);
+}
+
+function circle(c,x,y,r,color){
+  c.strokeStyle=color;
+  c.lineWidth=1;
+  c.beginPath();
+  c.arc(x,y,r,0,Math.PI*2);
+  c.stroke();
+}
+
+function label(c,text,x,y,color=GREEN){
+  c.font='8px monospace';
+  c.fillStyle=color;
+  c.textAlign='left';
+  c.fillText(text,x,y);
+}
+
+function grid(c){
+  rect(c,0,0,320,160,BLACK);
+
+  for(let x=0;x<320;x+=16){
+    line(c,[[x,0],[x,160]],GRID,.5);
+  }
+
+  for(let y=0;y<160;y+=16){
+    line(c,[[0,y],[320,y]],GRID,.5);
+  }
+}
+
+function eye(c,x,y,t){
+
+  let ex=x+Math.round(Math.sin(t/22)*5);
+
+  rect(c,ex-6,y-4,13,9,'#ff294533');
+  rect(c,ex-4,y-3,9,7,'#a71932');
+  rect(c,ex-2,y-2,5,5,RED);
+  rect(c,ex-1,y-1,2,2,'#ffc1ca');
+
+}
+
+function drone(c,x,y,t,s=1){
+
+  c.save();
+  c.translate(Math.round(x),Math.round(y));
+  c.scale(s,s);
+
+  line(c,[
+    [-22,-10],[22,-10],
+    [31,0],[22,13],
+    [-22,13],[-31,0],
+    [-22,-10]
+  ],WHITE,1.5);
+
+  line(c,[
+    [-31,0],[-62,-8],[-62,-20]
+  ],WHITE,1.5);
+
+  line(c,[
+    [31,0],[62,-8],[62,-20]
+  ],WHITE,1.5);
+
+  let p=Math.round(Math.sin(t/2)*5);
+
+  line(c,[
+    [-87-p,-23],[-37+p,-23]
+  ],WHITE,2);
+
+  line(c,[
+    [37-p,-23],[87+p,-23]
+  ],WHITE,2);
+
+  line(c,[[-77,-18],[-47,-18]],GREEN);
+  line(c,[[47,-18],[77,-18]],GREEN);
+
+  box(c,-13,13,26,16,WHITE);
+  box(c,-10,16,20,10,GRID);
+
+  eye(c,0,21,t);
+
+  c.restore();
+}
+
+function ground(c){
+  line(c,[[0,135],[320,135]],GREEN);
+}
+
+function aerial(c,t){
+
+  line(c,[
+    [0,135],[45,96],[75,118],
+    [125,78],[181,135]
+  ],WHITE);
+
+  line(c,[
+    [155,135],[224,92],
+    [280,135],[320,110]
+  ],GRID);
+
+  let x=160+Math.sin(t/40)*45;
+
+  drone(c,x,52,t,.72);
+
+  line(c,[
+    [x,73],[x-36,135],
+    [x+36,135],[x,73]
+  ],GREEN,.7);
+
+  ground(c);
+
+  label(c,'AERIAL CAPTURE',8,151);
+}
+
+function inspection(c,t){
+
+  box(c,204,40,94,95,WHITE);
+
+  for(let y=50;y<135;y+=18){
+    line(c,[[204,y],[298,y]],GRID);
+  }
+
+  for(let x=220;x<298;x+=20){
+    line(c,[[x,40],[x,135]],GRID);
+  }
+
+  let y=70+Math.sin(t/35)*20;
+
+  drone(c,100,y,t,.65);
+
+  let scan=45+t%85;
+
+  line(c,[[204,scan],[298,scan]],GREEN,2);
+  line(c,[[100,y+20],[204,scan]],RED,.7);
+
+  box(c,237,76,20,18,RED);
+
+  ground(c);
+  label(c,'STRUCTURE SCAN',8,151);
+}
+
+function survey(c,t){
+
+  for(let i=0;i<8;i++){
+
+    line(c,[
+      [i*50-20,137],
+      [95+i*18,85]
+    ],GREEN,.6);
+
+  }
+
+  for(let i=0;i<5;i++){
+
+    line(c,[
+      [i*19,137-i*13],
+      [320-i*19,137-i*13]
+    ],GRID);
+
+  }
+
+  let x=160+Math.sin(t/45)*38;
+
+  drone(c,x,45,t,.7);
+
+  line(c,[[x,65],[80,136]],GREEN);
+  line(c,[[x,65],[240,136]],GREEN);
+
+  let sy=90+t%47;
+
+  line(c,[[30,sy],[290,sy]],GREEN);
+
+  label(c,'3D TERRAIN MAPPING',8,151);
+}
+
+function agriculture(c,t){
+
+  for(let row=0;row<6;row++){
+
+    let y=89+row*9;
+
+    line(c,[
+      [10,y],[310,y]
+    ],GRID,2);
+
+    for(let x=18;x<310;x+=22){
+
+      line(c,[
+        [x-4,y-4],
+        [x,y],
+        [x+4,y-4]
+      ],GREEN);
+
+    }
+  }
+
+  let x=160+Math.sin(t/50)*65;
+
+  drone(c,x,45,t,.7);
+
+  for(let i=0;i<8;i++){
+
+    let dy=(t+i*9)%45;
+
+    rect(c,
+      x-24+(i%4)*16,
+      65+dy,
+      2,3,GREEN
+    );
+
+  }
+
+  label(c,'FIELD TREATMENT',8,151);
+}
+
+function disaster(c,t){
+
+  line(c,[
+    [10,135],[28,105],[50,116],
+    [70,90],[94,118],[110,135]
+  ],WHITE);
+
+  line(c,[
+    [190,135],[190,94],[220,105],
+    [240,81],[280,110],[280,135]
+  ],WHITE);
+
+  let x=160+Math.sin(t/40)*30;
+
+  drone(c,x,48,t,.65);
+
+  circle(c,160,110,12+t%26,GREEN);
+  circle(c,160,110,25+t%26,GRID);
+
+  line(c,[[153,110],[167,110]],RED);
+  line(c,[[160,103],[160,117]],RED);
+
+  ground(c);
+  label(c,'SEARCH & RESCUE SCAN',8,151);
+}
+
+function show(c,t){
+
+  for(let i=0;i<36;i++){
+
+    let a=i*Math.PI*2/36;
+
+    let cx=160+Math.cos(a)*66;
+    let cy=70+Math.sin(a)*45;
+
+    let hx=160+3.6*16*Math.pow(Math.sin(a),3);
+
+    let hy=68-3.6*(
+      13*Math.cos(a)
+      -5*Math.cos(2*a)
+      -2*Math.cos(3*a)
+      -Math.cos(4*a)
+    );
+
+    let mix=(Math.sin(t/55)+1)/2;
+
+    let x=cx+(hx-cx)*mix;
+    let y=cy+(hy-cy)*mix;
+
+    rect(c,x-1,y-1,3,3,
+      i===0?RED:GREEN
+    );
+
+    rect(c,x-3,y-3,7,7,
+      i===0?'#ff294522':'#9dff8018'
+    );
+
+  }
+
+  drone(c,260,123,t,.32);
+
+  label(c,'FORMATION CONTROL',8,151);
+}
+
+function support(c,t){
+
+  box(c,20,28,94,76,WHITE);
+
+  for(let i=0;i<5;i++){
+    line(c,[
+      [30,42+i*11],
+      [100,42+i*11]
+    ],GRID);
+  }
+
+  rect(c,32,36+t%62,66,2,GREEN);
+
+  line(c,[[67,104],[67,121]],WHITE);
+  line(c,[[40,121],[94,121]],WHITE);
+
+  drone(c,224,65,t,.65);
+
+  line(c,[[114,65],[160,65]],GRID);
+
+  for(let i=0;i<4;i++){
+
+    rect(c,
+      115+(t+i*11)%45,
+      63,4,4,GREEN
+    );
+
+  }
+
+  label(c,'OPERATION LINK',8,151);
+}
+
+const scenes=[
+  aerial,
+  inspection,
+  survey,
+  agriculture,
+  disaster,
+  show,
+  support
 ];
 
-const grid=document.getElementById('services');
+const canvases=[
+  ...document.querySelectorAll('.card canvas')
+];
 
-const cards=items.map((a,i)=>{
-const d=document.createElement('article');
-d.className='card';
-d.innerHTML=`
-<div class="number">OPERATION / 0${i+1}</div>
-<canvas width="240" height="110"
-role="img" aria-label="${a[1]}のアニメーション"></canvas>
-<div class="info">
-<div class="en">${a[0]}</div>
-<h2>${a[1]}</h2>
-<p>${a[2]}</p>
-<details>
-<summary>業務詳細 / DETAILS</summary>
-${a[3].map(g=>'<h3>'+g[0]+'</h3>'+g.slice(1).map(s=>'<p>'+s+'</p>').join('')).join('')}
-</details>
-</div>`;
-grid.append(d);
-return d.querySelector('canvas');
-});
+const contexts=canvases.map(
+  c=>c.getContext('2d')
+);
+
+const visible=new Set(canvases);
+
+if('IntersectionObserver' in window){
+
+  const observer=new IntersectionObserver(
+    entries=>entries.forEach(e=>{
+
+      if(e.isIntersecting){
+        visible.add(e.target);
+      }else{
+        visible.delete(e.target);
+      }
+
+    })
+  );
+
+  canvases.forEach(c=>observer.observe(c));
+}
 
 function draw(c,i,t){
 
-const r=(x,y,w,h,col)=>{
-c.fillStyle=col;
-c.fillRect(Math.round(x),Math.round(y),
-Math.max(1,Math.round(w)),
-Math.max(1,Math.round(h)));
-};
+  grid(c);
 
-const poly=(p,col)=>{
-c.fillStyle=col;
-c.beginPath();
-p.forEach(([x,y],j)=>j?c.lineTo(x,y):c.moveTo(x,y));
-c.closePath();
-c.fill();
-};
+  scenes[i](c,t);
 
-const drone=(x,y,s=1,ag=false)=>{
-const q=(a,b,w,h,col)=>r(x+a*s,y+b*s,w*s,h*s,col);
+  rect(c,0,t%160,320,3,'#70ff7920');
 
-q(-21,-5,17,2,'#d1dfbc');
-q(5,-5,17,2,'#d1dfbc');
-q(-16,-7,7+(t%4)*3,1,'#a0bca0');
-q(10,-7,7+(t%4)*3,1,'#a0bca0');
-q(-14,-3,4,7,'#8da79a');
-q(11,-3,4,7,'#8da79a');
-q(-14,3,29,3,'#718e81');
-q(-9,-1,19,10,'#b8c8ae');
-q(-6,-3,13,3,'#d2ddc5');
-q(-6,3,13,5,'#809e91');
-q(-10,9,3,4,'#90a497');
-q(8,9,3,4,'#90a497');
+  label(c,'DRONE - SYSTEM -',8,12,WHITE);
 
-if(ag){
-q(-7,7,15,7,'#d0d4b1');
-q(-18,12,37,2,'#a1b6a1');
-}else{
-q(-4,9,9,5,'#344c43');
-q(-2,10,5,3,'#a2c9c0');
-}
+  rect(c,260,6,5,5,RED);
 
-q(8,1,2,2,t%50<25?'#e0b879':'#789a80');
-};
-
-const mountains=y=>{
-poly([[0,y],[0,y-14],[35,y-40],
-[72,y-17],[112,y-47],[156,y-14],
-[195,y-37],[240,y-13],[240,y]],'#293e30');
-poly([[0,y],[38,y-21],[85,y-8],
-[141,y-27],[185,y-10],[220,y-22],
-[240,y]],'#39513a');
-};
-
-const tree=(x,y)=>{
-r(x-1,y-9,3,9,'#746b45');
-poly([[x-9,y-8],[x-5,y-19],
-[x,y-25],[x+6,y-19],[x+10,y-8]],'#466a3d');
-};
-
-const building=(x,y,w,h)=>{
-r(x,y,w,h,'#4d6154');
-r(x+w-5,y,5,h,'#344a40');
-r(x-2,y-2,w+3,3,'#87917c');
-for(let a=5;a<w-6;a+=9)
-for(let b=6;b<h-4;b+=11){
-r(x+a,y+b,5,6,'#253e39');
-r(x+a,y+b,4,2,'#a6b99a');
-}
-};
-
-r(0,0,240,110,'#172820');
-r(0,42,240,26,'#263b2e');
-
-let x=120+Math.sin(t/100)*73;
-let y=26+Math.sin(t/24)*2;
-
-// 01 空撮
-if(i===0){
-mountains(65);
-r(0,82,240,28,'#364a33');
-[[8,58,30,42],[44,42,32,58],
-[83,65,27,35],[142,52,40,48],
-[190,63,34,37]].forEach(a=>building(...a));
-r(0,101,240,9,'#273b34');
-r(0,105,240,1,'#88927a');
-drone(x,y,.9);
-poly([[x,y+14],[x-22,95],[x+22,95]],'#c0d6a313');
-r(x-14,85,7,1,'#c4d8aa');
-r(x-14,85,1,6,'#c4d8aa');
-r(x+8,91,7,1,'#c4d8aa');
-r(x+14,86,1,6,'#c4d8aa');
-}
-
-// 02 点検
-if(i===1){
-mountains(85);
-r(0,92,240,18,'#364b35');
-building(139,12,85,80);
-for(let a=144;a<220;a+=19)
-r(a,12,2,80,'#8b9985');
-for(let b=24;b<92;b+=18)
-r(139,b,85,2,'#899681');
-y=49+Math.sin(t/70)*29;
-drone(99,y);
-r(117,y+7,21,1,'#c4c894');
-r(140,y+2,84,10,'#a7d8a12b');
-r(140,y+7,84,1,'#9ed39b');
-r(25,76,28,5,'#576b60');
-r(30,68,18,8,'#789186');
-r(31,82,5,5,'#202d25');
-r(44,82,5,5,'#202d25');
-}
-
-// 03 測量
-if(i===2){
-mountains(56);
-r(0,56,240,54,'#253f32');
-for(let j=0;j<7;j++)
-r(0,57+j*8,240,1,'#54755a');
-for(let k=-6;k<14;k++)
-poly([[120+k*10,56],[121+k*10,56],
-[121+k*33,110],[120+k*33,110]],'#54755a');
-poly([[65,81],[65,62],[119,77],[119,96]],'#42694d');
-poly([[119,96],[119,77],[157,57],[157,76]],'#365e45');
-poly([[65,62],[103,45],[157,57],[119,77]],'#89b18a');
-drone(x,19,.8);
-poly([[x,31],[x-24,100],[x+24,100]],'#a4dfae18');
-r(x-23,92,46,1,'#b1d9a3');
-}
-
-// 04 農業
-if(i===3){
-mountains(53);
-r(0,53,240,57,'#625839');
-for(let j=0;j<7;j++){
-let yy=55+j*8;
-r(0,yy,240,5,j%2?'#4c7438':'#608441');
-for(let k=0;k<25;k++){
-let xx=k*10+(j%2)*5;
-r(xx,yy+1,6,2,'#9bb75e');
-r(xx+2,yy,3,4,'#769c4b');
-}
-}
-drone(x,26,1.1,true);
-for(let k=0;k<28;k++){
-let p=(t*.8+k*7)%31;
-r(x+(k%11-5)*4+(k%3-1)*p*.2,
-42+p,1,2,p>23?'#729a79':'#b4d7c6');
-}
-}
-
-// 05 防災
-if(i===4){
-r(0,0,240,110,'#142420');
-mountains(65);
-poly([[0,80],[45,69],[89,82],[137,72],
-[240,84],[240,110],[0,110]],'#495043');
-poly([[0,94],[42,87],[94,101],[153,90],
-[240,97],[240,110],[0,110]],'#466b67');
-r(22,56,43,28,'#6d7462');
-poly([[15,57],[42,36],[73,57]],'#8a8a6d');
-r(38,65,11,19,'#344b42');
-r(26,61,8,8,'#a8b19a');
-poly([[172,72],[193,55],[216,70],
-[208,85],[172,85]],'#69745e');
-r(184,74,22,3,'#394b40');
-drone(x,22);
-poly([[x,36],[x-36,96],[x+36,96]],'#d6e8a72b');
-r(115,76,5,5,'#e5b975');
-r(114,81,7,9,'#bb955c');
-r(114,90,2,5,'#9c8c63');
-r(119,90,2,5,'#9c8c63');
-}
-
-// 06 ドローンショー
-if(i===5){
-r(0,0,240,110,'#101c23');
-for(let k=0;k<40;k++)
-r(k*43%240,k*17%76,1,1,'#607a79');
-r(0,89,240,21,'#263b36');
-for(let k=0;k<18;k++){
-let h=5+k*7%14;
-r(k*15,89-h,12,h,'#354b44');
-}
-for(let k=0;k<32;k++){
-let a=k/32*Math.PI*2;
-let p=(Math.sin(t/160)+1)/2;
-let xx=120+Math.cos(a)*43*(1-p)
-+16*Math.sin(a)**3*3.2*p;
-let yy=42+Math.sin(a)*27*(1-p)
--(13*Math.cos(a)-5*Math.cos(2*a)
--2*Math.cos(3*a)-Math.cos(4*a))*2.2*p;
-r(xx-1,yy-1,3,3,'#6d9c9d');
-r(xx,yy,1,1,['#e4d8a6','#b5e0cf','#e4e8cb'][k%3]);
-}
-for(let k=0;k<22;k++){
-let xx=k*11+3;
-r(xx,94+(k%3)*3,4,4,'#74847a');
-r(xx-1,98+(k%3)*3,6,10,'#344b43');
-}
-}
-
-// 07 導入支援
-if(i===6){
-mountains(64);
-r(0,64,240,46,'#465b38');
-r(0,86,240,24,'#69705a');
-r(0,91,240,2,'#9b9f7e');
-tree(18,72);
-tree(222,72);
-r(50,39,14,15,'#b6ad86');
-r(48,35,17,6,'#758b71');
-r(45,40,23,3,'#8a9b7f');
-r(46,54,23,26,'#839780');
-r(48,55,7,23,'#c2b779');
-r(62,55,5,23,'#c2b779');
-r(49,80,7,19,'#344d44');
-r(60,80,7,19,'#344d44');
-r(47,98,11,4,'#263c34');
-r(59,98,11,4,'#263c34');
-r(67,57,7,14,'#b6ad86');
-r(73,65,12,6,'#b6ad86');
-r(78,60,15,10,'#354e46');
-r(81,62,9,5,'#8fc2b1');
-drone(169,29+Math.sin(t/28)*4,1.1);
-for(let k=0;k<4;k++)
-r(101+k*12,59-k*8,3,2,'#a9c9a2');
-r(147,91,43,2,'#b9c6a2');
-r(147,83,2,10,'#b9c6a2');
-r(188,83,2,10,'#b9c6a2');
-}
-
-r(0,0,240,1,'#56724f');
-}
-
-const contexts=cards.map(c=>c.getContext('2d'));
-const visible=new Set(cards);
-
-if('IntersectionObserver' in window){
-const observer=new IntersectionObserver(entries=>
-entries.forEach(e=>e.isIntersecting
-?visible.add(e.target):visible.delete(e.target)));
-cards.forEach(c=>observer.observe(c));
+  label(c,'ACTIVE',269,12,RED);
 }
 
 contexts.forEach((c,i)=>draw(c,i,0));
 
 let last=0;
 
-function tick(now){
-if(now-last>45&&!document.hidden){
-contexts.forEach((c,i)=>{
-if(visible.has(cards[i]))
-draw(c,i,Math.floor(now/25));
-});
-last=now;
-}
-requestAnimationFrame(tick);
+function animate(now){
+
+  if(now-last>40&&!document.hidden){
+
+    contexts.forEach((c,i)=>{
+
+      if(visible.has(canvases[i])){
+        draw(c,i,Math.floor(now/25));
+      }
+
+    });
+
+    last=now;
+  }
+
+  requestAnimationFrame(animate);
 }
 
-if(!matchMedia('(prefers-reduced-motion: reduce)').matches)
-requestAnimationFrame(tick);
+if(!window.matchMedia(
+  '(prefers-reduced-motion: reduce)'
+).matches){
 
+  requestAnimationFrame(animate);
+
+}
+
+})();
 </script>
-
-
-<!-- TONOLAB UNIFIED COLOR SYSTEM -->
-
-<style>
-
-:root {
-  --tl-bg: #101510;
-  --tl-green: #9dff80;
-}
-
-html, body {
-  background: #101510 !important;
-  color: #9dff80 !important;
-}
-
-body * {
-  color: #9dff80 !important;
-  border-color: #9dff80 !important;
-  box-shadow: none !important;
-  text-shadow: none !important;
-}
-
-header, footer, main, section,
-article, .card, .service-card,
-details, summary, button {
-  background: #101510 !important;
-}
-
-button:hover,
-summary:hover,
-a:hover {
-  background: #203520 !important;
-}
-
-canvas {
-  background: #101510 !important;
-  image-rendering: pixelated;
-  filter:
-    grayscale(100%)
-    sepia(100%)
-    hue-rotate(55deg)
-    saturate(180%);
-}
-
-</style>
-
-<!-- END TONOLAB COLOR SYSTEM -->
-
 
 </body>
 </html>
