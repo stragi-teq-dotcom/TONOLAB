@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TONOLAB</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  background: #101510;
+  color: #9dff80;
+  font-family: monospace;
+  margin: 0;
+  padding: 24px;
+}
+header {
+  border-bottom: 2px solid #9dff80;
+  padding-bottom: 15px;
+}
+h1 {
+  font-size: 48px;
+  letter-spacing: 8px;
+  margin: 10px 0;
+}
+.screen {
+  max-width: 800px;
+  margin: 40px auto;
+  border: 2px solid #9dff80;
+  padding: 24px;
+}
+button {
+  display: block;
+  width: 100%;
+  background: transparent;
+  color: #9dff80;
+  border: 1px solid #9dff80;
+  padding: 16px;
+  margin: 12px 0;
+  font-family: monospace;
+  font-size: 16px;
+  cursor: pointer;
+}
+button:hover {
+  background: #9dff80;
+  color: #101510;
+}
+.status {
+  animation: blink 1.5s infinite;
+}
+@keyframes blink {
+  50% { opacity: 0.2; }
+}
+footer {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 40px;
+}
+</style>
+</head>
+<body>
+<header>
+  TONOLAB // DRONE SYSTEM
+</header>
+<main class="screen">
+  <p class="status">● SYSTEM ONLINE</p>
+  <h1>TONOLAB</h1>
+  <p>DRONE &amp; CREATIVE TECHNOLOGY</p>
+  <p>空から、新しい可能性を。</p>
+  <hr>
+  <p>SELECT MENU</p>
+  <button onclick="show('ドローンによる空撮・映像制作')">
+    01 / SERVICE
+  </button>
+  <button onclick="show('ドローン活用に関するご相談')">
+    02 / PROJECT
+  </button>
+  <button onclick="show('TONOLAB — ドローン事業')">
+    03 / ABOUT US
+  </button>
+  <button onclick="show('お問い合わせ窓口 準備中')">
+    04 / CONTACT
+  </button>
+  <p id="message">AWAITING COMMAND...</p>
+</main>
+<footer>
+  © 2026 TONOLAB
+</footer>
+<script>
+function show(message) {
+  document.getElementById('message').textContent = '> ' + message;
+}
+</script>
+</body>
+</html>
