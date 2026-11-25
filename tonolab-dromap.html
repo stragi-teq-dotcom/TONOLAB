@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DROMAP | TONOLAB</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  background: #101510;
+  color: #9dff80;
+  font-family: monospace;
+  margin: 0;
+  padding: 24px;
+}
+
+main {
+  max-width: 800px;
+  margin: auto;
+}
+
+header {
+  border-bottom: 1px solid #285c32;
+  padding-bottom: 20px;
+}
+
+h1 {
+  font-size: 32px;
+  letter-spacing: 5px;
+}
+
+.red { color: #ff2945; }
+
+small {
+  letter-spacing: 3px;
+}
+
+.panel {
+  border: 1px solid #285c32;
+  padding: 20px;
+  margin-top: 24px;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  background: #050805;
+  border: 1px solid #285c32;
+}
+
+p {
+  color: #d0d8ce;
+  line-height: 1.9;
+  font-size: 14px;
+}
+
+a {
+  display: block;
+  text-align: center;
+  border: 1px solid #285c32;
+  color: #9dff80;
+  padding: 15px;
+  margin-top: 18px;
+  text-decoration: none;
+}
+
+a:hover {
+  background: #9dff80;
+  color: #050805;
+}
+
+.status {
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+footer {
+  margin-top: 30px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<header>
+<small>04 / DRONE NETWORK</small>
+<h1>TONOL<span class="red">A</span>B</h1>
+</header>
+
+<section class="panel">
+
+<small>PARTNER APPLICATION</small>
+<h2>DROMAP</h2>
+
+<canvas id="radar" width="480" height="280">
+</canvas>
+
+<p class="status">
+● DRONE NETWORK / SIMULATION
+</p>
+
+<h3>ドローンと地図をつなぐ</h3>
+
+<p>
+TONOLABでは、ドローン関連アプリ
+「DROMAP」をパートナーアプリとして
+紹介しています。
+</p>
+
+<p>
+ドローンとデジタル技術を組み合わせ、
+新しい飛行環境と情報活用の可能性を
+追求していきます。
+</p>
+
+<h3>APPLICATION</h3>
+
+<a href="https://apps.apple.com/jp/app/id6802153354"
+target="_blank" rel="noopener">
+DROMAP / APP STORE ↗
+</a>
+
+</section>
+
+<a href="index.html">
+◀ RETURN TO TOP
+</a>
+
+<footer>
+TONOLAB / DRONE NETWORK SYSTEM
+</footer>
+
+</main>
+
+<script>
+const canvas = document.getElementById('radar');
+const g = canvas.getContext('2d');
+
+const GREEN = '#9dff80';
+const WHITE = '#d0d8ce';
+const RED = '#ff2945';
+const GRID = '#285c32';
+const BLACK = '#050805';
+
+let t = 0;
+
+const buildings = [
+  [35,35,55,40],
+  [110,30,60,45],
+  [210,35,65,40],
+  [335,30,75,50],
+  [40,105,65,55],
+  [145,110,45,65],
+  [290,110,60,55],
+  [385,115,55,60],
+  [35,205,65,40],
+  [150,215,55,35],
+  [275,210,60,40],
+  [380,210,60,35]
+];
+
+function drawDrone(x,y,a) {
+
+  g.save();
+  g.translate(x,y);
+  g.rotate(a);
+
+  g.strokeStyle = WHITE;
+  g.lineWidth = 1.5;
+
+  g.strokeRect(-7,-10,14,20);
+
+  g.beginPath();
+  g.moveTo(-6,-7);
+  g.lineTo(-20,-20);
+  g.moveTo(6,-7);
+  g.lineTo(20,-20);
+  g.moveTo(-6,7);
+  g.lineTo(-20,20);
+  g.moveTo(6,7);
+  g.lineTo(20,20);
+  g.stroke();
+
+  for(const p of [
+    [-20,-20],
+    [20,-20],
+    [-20,20],
+    [20,20]
+  ]) {
+
+    g.beginPath();
+    g.arc(p[0],p[1],8,0,Math.PI*2);
+    g.stroke();
+
+    g.beginPath();
+    g.moveTo(
+      p[0]+Math.cos(t)*7,
+      p[1]+Math.sin(t)*7
+    );
+    g.lineTo(
+      p[0]-Math.cos(t)*7,
+      p[1]-Math.sin(t)*7
+    );
+    g.stroke();
+
+  }
+
+  g.fillStyle = RED;
+  g.fillRect(-3,-12,6,5);
+
+  g.restore();
+
+}
+
+function draw() {
+
+  t++;
+
+  g.fillStyle = BLACK;
+  g.fillRect(0,0,480,280);
+
+  // GRID
+
+  g.strokeStyle = GRID;
+  g.lineWidth = 0.5;
+
+  for(let x=0;x<=480;x+=20) {
+    g.beginPath();
+    g.moveTo(x,0);
+    g.lineTo(x,280);
+    g.stroke();
+  }
+
+  for(let y=0;y<=280;y+=20) {
+    g.beginPath();
+    g.moveTo(0,y);
+    g.lineTo(480,y);
+    g.stroke();
+  }
+
+  // BUILDINGS
+
+  g.strokeStyle = GRID;
+  g.lineWidth = 1.5;
+
+  for(const b of buildings) {
+    g.strokeRect(...b);
+  }
+
+  // FLIGHT ROUTE
+
+  g.strokeStyle = GREEN;
+  g.setLineDash([5,7]);
+
+  g.beginPath();
+  g.ellipse(
+    240,140,145,85,
+    0,0,Math.PI*2
+  );
+  g.stroke();
+
+  g.setLineDash([]);
+
+  // RADAR
+
+  const angle = t * 0.025;
+
+  g.strokeStyle = '#285c32';
+
+  for(let r=40;r<=120;r+=40) {
+    g.beginPath();
+    g.arc(240,140,r,0,Math.PI*2);
+    g.stroke();
+  }
+
+  g.fillStyle = '#9dff8018';
+
+  g.beginPath();
+  g.moveTo(240,140);
+  g.arc(240,140,125,angle-0.7,angle);
+  g.closePath();
+  g.fill();
+
+  // DRONE POSITION
+
+  const a = t * 0.012;
+  const x = 240 + Math.cos(a)*145;
+  const y = 140 + Math.sin(a)*85;
+
+  drawDrone(x,y,a+Math.PI);
+
+  // TARGET MARKERS
+
+  g.strokeStyle = RED;
+  g.strokeRect(228,128,24,24);
+
+  g.fillStyle = RED;
+  g.fillRect(238,138,4,4);
+
+  // HUD
+
+  g.fillStyle = GREEN;
+  g.font = '11px monospace';
+
+  g.fillText('DROMAP / FLIGHT MONITOR',12,18);
+  g.fillText('TRACKING : ACTIVE',12,268);
+
+  g.textAlign = 'right';
+  g.fillText('SIMULATION MODE',468,268);
+  g.textAlign = 'left';
+
+  requestAnimationFrame(draw);
+
+}
+
+draw();
+</script>
+
+</body>
+</html>
