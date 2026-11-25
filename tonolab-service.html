@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SERVICE | TONOLAB</title>
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+background:#101810;
+color:#c7dec0;
+font-family:monospace;
+}
+main{
+max-width:1000px;
+margin:auto;
+padding:24px;
+}
+header{
+border-bottom:1px solid #40583d;
+padding-bottom:20px;
+margin-bottom:24px;
+}
+a{color:#b9d5a5;text-decoration:none}
+.logo{
+font-size:28px;
+letter-spacing:5px;
+}
+.status{
+font-size:11px;
+color:#819b76;
+letter-spacing:2px;
+}
+h1{
+font-size:30px;
+letter-spacing:5px;
+color:#b9d5a5;
+margin-bottom:8px;
+}
+.lead{
+color:#a6b99c;
+margin-bottom:24px;
+}
+.grid{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:16px;
+}
+.card{
+border:1px solid #40583d;
+background:#152017;
+min-width:0;
+}
+.card:last-child{
+grid-column:1/-1;
+}
+.number,.info{padding:12px}
+.number,.en{
+font-size:11px;
+letter-spacing:1px;
+color:#9fbd91;
+}
+canvas{
+display:block;
+width:100%;
+image-rendering:pixelated;
+background:#172820;
+}
+.card:last-child canvas{
+max-height:240px;
+object-fit:contain;
+}
+h2{
+font-size:20px;
+margin:8px 0;
+color:#d1e4c4;
+}
+h3{
+font-size:14px;
+color:#b9d5a5;
+margin:16px 0 4px;
+}
+p{line-height:1.8}
+details{
+margin-top:12px;
+line-height:1.8;
+font-size:14px;
+}
+summary{
+cursor:pointer;
+color:#b9d5a5;
+padding:8px 0;
+border-top:1px solid #40583d;
+}
+footer{
+border-top:1px solid #40583d;
+margin-top:24px;
+padding:24px 0;
+text-align:center;
+font-size:12px;
+color:#819b76;
+}
+.back{
+display:inline-block;
+border:1px solid #58744e;
+padding:12px 20px;
+margin:16px 0;
+}
+@media(max-width:560px){
+main{padding:14px}
+.grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+<a href="index.html" class="logo">TONOLAB</a>
+<p class="status">DRONE & CREATIVE TECHNOLOGY</p>
+<a href="index.html">◀ BACK TO HOME</a>
+</header>
+
+<div class="status">OPERATION DATABASE</div>
+<h1>SERVICE</h1>
+<p class="lead">空から、産業の可能性を広げる。</p>
+
+<div class="grid" id="services"></div>
+
+<footer>
+<a class="back" href="index.html">◀ RETURN TO MAIN MENU</a>
+<p>TONOLAB / SYSTEM ONLINE</p>
+<p>© TONOLAB</p>
+</footer>
+
+</main>
+
+<script>
+const items=[
+['AERIAL IMAGING','空撮','通常空撮・特殊空撮',[
+['通常空撮',
+'PV・観光PR',
+'不動産・建築撮影',
+'住宅・商業施設・ホテル・竣工撮影',
+'イベント空撮',
+'花火大会・祭典・スポーツ・屋外イベント'],
+['特殊空撮',
+'夜間・海上・船上撮影',
+'移動体追従撮影']
+]],
+['INSPECTION','点検','インフラ・建築物点検',[
+['点検対象',
+'橋梁・鉄塔・太陽光パネル',
+'屋根・外壁']
+]],
+['SURVEY & MAPPING','測量','写真測量・3D解析',[
+['3D解析',
+'写真測量・3Dモデル',
+'オルソ画像生成']
+]],
+['AGRICULTURE','農業','農林水産分野',[
+['農林水産分野',
+'農薬散布・生育調査',
+'森林調査・養殖場撮影']
+]],
+['DISASTER RESPONSE','防災','災害調査・捜索支援',[
+['災害調査・捜索支援',
+'被災状況確認・広域調査']
+]],
+['DRONE SHOW','ドローンショー','ショー運営支援',[
+['運営支援',
+'現場管理・記録撮影']
+]],
+['TECHNICAL SUPPORT','ドローン導入支援','運用・技術・教育',[
+['運用支援',
+'パイロット派遣',
+'飛行計画・安全管理'],
+['導入コンサルティング',
+'機体選定・運用構築',
+'技術コンサルティング'],
+['操縦教育・技術指導',
+'操縦訓練・空撮技術・安全講習']
+]]
+];
+
+const grid=document.getElementById('services');
+
+const cards=items.map((a,i)=>{
+const d=document.createElement('article');
+d.className='card';
+d.innerHTML=`
+<div class="number">OPERATION / 0${i+1}</div>
+<canvas width="240" height="110"
+role="img" aria-label="${a[1]}のアニメーション"></canvas>
+<div class="info">
+<div class="en">${a[0]}</div>
+<h2>${a[1]}</h2>
+<p>${a[2]}</p>
+<details>
+<summary>業務詳細 / DETAILS</summary>
+${a[3].map(g=>'<h3>'+g[0]+'</h3>'+g.slice(1).map(s=>'<p>'+s+'</p>').join('')).join('')}
+</details>
+</div>`;
+grid.append(d);
+return d.querySelector('canvas');
+});
+
+function draw(c,i,t){
+
+const r=(x,y,w,h,col)=>{
+c.fillStyle=col;
+c.fillRect(Math.round(x),Math.round(y),
+Math.max(1,Math.round(w)),
+Math.max(1,Math.round(h)));
+};
+
+const poly=(p,col)=>{
+c.fillStyle=col;
+c.beginPath();
+p.forEach(([x,y],j)=>j?c.lineTo(x,y):c.moveTo(x,y));
+c.closePath();
+c.fill();
+};
+
+const drone=(x,y,s=1,ag=false)=>{
+const q=(a,b,w,h,col)=>r(x+a*s,y+b*s,w*s,h*s,col);
+
+q(-21,-5,17,2,'#d1dfbc');
+q(5,-5,17,2,'#d1dfbc');
+q(-16,-7,7+(t%4)*3,1,'#a0bca0');
+q(10,-7,7+(t%4)*3,1,'#a0bca0');
+q(-14,-3,4,7,'#8da79a');
+q(11,-3,4,7,'#8da79a');
+q(-14,3,29,3,'#718e81');
+q(-9,-1,19,10,'#b8c8ae');
+q(-6,-3,13,3,'#d2ddc5');
+q(-6,3,13,5,'#809e91');
+q(-10,9,3,4,'#90a497');
+q(8,9,3,4,'#90a497');
+
+if(ag){
+q(-7,7,15,7,'#d0d4b1');
+q(-18,12,37,2,'#a1b6a1');
+}else{
+q(-4,9,9,5,'#344c43');
+q(-2,10,5,3,'#a2c9c0');
+}
+
+q(8,1,2,2,t%50<25?'#e0b879':'#789a80');
+};
+
+const mountains=y=>{
+poly([[0,y],[0,y-14],[35,y-40],
+[72,y-17],[112,y-47],[156,y-14],
+[195,y-37],[240,y-13],[240,y]],'#293e30');
+poly([[0,y],[38,y-21],[85,y-8],
+[141,y-27],[185,y-10],[220,y-22],
+[240,y]],'#39513a');
+};
+
+const tree=(x,y)=>{
+r(x-1,y-9,3,9,'#746b45');
+poly([[x-9,y-8],[x-5,y-19],
+[x,y-25],[x+6,y-19],[x+10,y-8]],'#466a3d');
+};
+
+const building=(x,y,w,h)=>{
+r(x,y,w,h,'#4d6154');
+r(x+w-5,y,5,h,'#344a40');
+r(x-2,y-2,w+3,3,'#87917c');
+for(let a=5;a<w-6;a+=9)
+for(let b=6;b<h-4;b+=11){
+r(x+a,y+b,5,6,'#253e39');
+r(x+a,y+b,4,2,'#a6b99a');
+}
+};
+
+r(0,0,240,110,'#172820');
+r(0,42,240,26,'#263b2e');
+
+let x=120+Math.sin(t/100)*73;
+let y=26+Math.sin(t/24)*2;
+
+// 01 空撮
+if(i===0){
+mountains(65);
+r(0,82,240,28,'#364a33');
+[[8,58,30,42],[44,42,32,58],
+[83,65,27,35],[142,52,40,48],
+[190,63,34,37]].forEach(a=>building(...a));
+r(0,101,240,9,'#273b34');
+r(0,105,240,1,'#88927a');
+drone(x,y,.9);
+poly([[x,y+14],[x-22,95],[x+22,95]],'#c0d6a313');
+r(x-14,85,7,1,'#c4d8aa');
+r(x-14,85,1,6,'#c4d8aa');
+r(x+8,91,7,1,'#c4d8aa');
+r(x+14,86,1,6,'#c4d8aa');
+}
+
+// 02 点検
+if(i===1){
+mountains(85);
+r(0,92,240,18,'#364b35');
+building(139,12,85,80);
+for(let a=144;a<220;a+=19)
+r(a,12,2,80,'#8b9985');
+for(let b=24;b<92;b+=18)
+r(139,b,85,2,'#899681');
+y=49+Math.sin(t/70)*29;
+drone(99,y);
+r(117,y+7,21,1,'#c4c894');
+r(140,y+2,84,10,'#a7d8a12b');
+r(140,y+7,84,1,'#9ed39b');
+r(25,76,28,5,'#576b60');
+r(30,68,18,8,'#789186');
+r(31,82,5,5,'#202d25');
+r(44,82,5,5,'#202d25');
+}
+
+// 03 測量
+if(i===2){
+mountains(56);
+r(0,56,240,54,'#253f32');
+for(let j=0;j<7;j++)
+r(0,57+j*8,240,1,'#54755a');
+for(let k=-6;k<14;k++)
+poly([[120+k*10,56],[121+k*10,56],
+[121+k*33,110],[120+k*33,110]],'#54755a');
+poly([[65,81],[65,62],[119,77],[119,96]],'#42694d');
+poly([[119,96],[119,77],[157,57],[157,76]],'#365e45');
+poly([[65,62],[103,45],[157,57],[119,77]],'#89b18a');
+drone(x,19,.8);
+poly([[x,31],[x-24,100],[x+24,100]],'#a4dfae18');
+r(x-23,92,46,1,'#b1d9a3');
+}
+
+// 04 農業
+if(i===3){
+mountains(53);
+r(0,53,240,57,'#625839');
+for(let j=0;j<7;j++){
+let yy=55+j*8;
+r(0,yy,240,5,j%2?'#4c7438':'#608441');
+for(let k=0;k<25;k++){
+let xx=k*10+(j%2)*5;
+r(xx,yy+1,6,2,'#9bb75e');
+r(xx+2,yy,3,4,'#769c4b');
+}
+}
+drone(x,26,1.1,true);
+for(let k=0;k<28;k++){
+let p=(t*.8+k*7)%31;
+r(x+(k%11-5)*4+(k%3-1)*p*.2,
+42+p,1,2,p>23?'#729a79':'#b4d7c6');
+}
+}
+
+// 05 防災
+if(i===4){
+r(0,0,240,110,'#142420');
+mountains(65);
+poly([[0,80],[45,69],[89,82],[137,72],
+[240,84],[240,110],[0,110]],'#495043');
+poly([[0,94],[42,87],[94,101],[153,90],
+[240,97],[240,110],[0,110]],'#466b67');
+r(22,56,43,28,'#6d7462');
+poly([[15,57],[42,36],[73,57]],'#8a8a6d');
+r(38,65,11,19,'#344b42');
+r(26,61,8,8,'#a8b19a');
+poly([[172,72],[193,55],[216,70],
+[208,85],[172,85]],'#69745e');
+r(184,74,22,3,'#394b40');
+drone(x,22);
+poly([[x,36],[x-36,96],[x+36,96]],'#d6e8a72b');
+r(115,76,5,5,'#e5b975');
+r(114,81,7,9,'#bb955c');
+r(114,90,2,5,'#9c8c63');
+r(119,90,2,5,'#9c8c63');
+}
+
+// 06 ドローンショー
+if(i===5){
+r(0,0,240,110,'#101c23');
+for(let k=0;k<40;k++)
+r(k*43%240,k*17%76,1,1,'#607a79');
+r(0,89,240,21,'#263b36');
+for(let k=0;k<18;k++){
+let h=5+k*7%14;
+r(k*15,89-h,12,h,'#354b44');
+}
+for(let k=0;k<32;k++){
+let a=k/32*Math.PI*2;
+let p=(Math.sin(t/160)+1)/2;
+let xx=120+Math.cos(a)*43*(1-p)
++16*Math.sin(a)**3*3.2*p;
+let yy=42+Math.sin(a)*27*(1-p)
+-(13*Math.cos(a)-5*Math.cos(2*a)
+-2*Math.cos(3*a)-Math.cos(4*a))*2.2*p;
+r(xx-1,yy-1,3,3,'#6d9c9d');
+r(xx,yy,1,1,['#e4d8a6','#b5e0cf','#e4e8cb'][k%3]);
+}
+for(let k=0;k<22;k++){
+let xx=k*11+3;
+r(xx,94+(k%3)*3,4,4,'#74847a');
+r(xx-1,98+(k%3)*3,6,10,'#344b43');
+}
+}
+
+// 07 導入支援
+if(i===6){
+mountains(64);
+r(0,64,240,46,'#465b38');
+r(0,86,240,24,'#69705a');
+r(0,91,240,2,'#9b9f7e');
+tree(18,72);
+tree(222,72);
+r(50,39,14,15,'#b6ad86');
+r(48,35,17,6,'#758b71');
+r(45,40,23,3,'#8a9b7f');
+r(46,54,23,26,'#839780');
+r(48,55,7,23,'#c2b779');
+r(62,55,5,23,'#c2b779');
+r(49,80,7,19,'#344d44');
+r(60,80,7,19,'#344d44');
+r(47,98,11,4,'#263c34');
+r(59,98,11,4,'#263c34');
+r(67,57,7,14,'#b6ad86');
+r(73,65,12,6,'#b6ad86');
+r(78,60,15,10,'#354e46');
+r(81,62,9,5,'#8fc2b1');
+drone(169,29+Math.sin(t/28)*4,1.1);
+for(let k=0;k<4;k++)
+r(101+k*12,59-k*8,3,2,'#a9c9a2');
+r(147,91,43,2,'#b9c6a2');
+r(147,83,2,10,'#b9c6a2');
+r(188,83,2,10,'#b9c6a2');
+}
+
+r(0,0,240,1,'#56724f');
+}
+
+const contexts=cards.map(c=>c.getContext('2d'));
+const visible=new Set(cards);
+
+if('IntersectionObserver' in window){
+const observer=new IntersectionObserver(entries=>
+entries.forEach(e=>e.isIntersecting
+?visible.add(e.target):visible.delete(e.target)));
+cards.forEach(c=>observer.observe(c));
+}
+
+contexts.forEach((c,i)=>draw(c,i,0));
+
+let last=0;
+
+function tick(now){
+if(now-last>45&&!document.hidden){
+contexts.forEach((c,i)=>{
+if(visible.has(cards[i]))
+draw(c,i,Math.floor(now/25));
+});
+last=now;
+}
+requestAnimationFrame(tick);
+}
+
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches)
+requestAnimationFrame(tick);
+
+</script>
+</body>
+</html>
