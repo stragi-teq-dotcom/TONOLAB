@@ -470,5 +470,80 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches)
 requestAnimationFrame(tick);
 
 </script>
+
+<!-- TONOLAB UNIFIED COLOR SYSTEM -->
+
+<style>
+
+:root {
+  --tl-bg: #0b100c;
+  --tl-panel: #152219;
+  --tl-border: #40583d;
+  --tl-muted: #789c70;
+  --tl-green: #a5d994;
+  --tl-text: #c5d4bc;
+}
+
+html, body {
+  background: var(--tl-bg) !important;
+  color: var(--tl-text) !important;
+}
+
+header, footer, main {
+  background-color: var(--tl-bg) !important;
+  border-color: var(--tl-border) !important;
+}
+
+h1, h2, h3, h4 {
+  color: var(--tl-green) !important;
+}
+
+p, li {
+  color: var(--tl-text) !important;
+}
+
+small {
+  color: var(--tl-muted) !important;
+}
+
+article,
+.card,
+.service-card,
+details {
+  background: var(--tl-panel) !important;
+  border-color: var(--tl-border) !important;
+  box-shadow: none !important;
+}
+
+button, summary, a {
+  color: var(--tl-green) !important;
+  border-color: var(--tl-border) !important;
+}
+
+button {
+  background: var(--tl-bg) !important;
+}
+
+button:hover,
+summary:hover {
+  background: #243b28 !important;
+}
+
+canvas {
+  background: var(--tl-bg) !important;
+  border-color: var(--tl-border) !important;
+  image-rendering: pixelated;
+  filter:
+    grayscale(100%)
+    sepia(100%)
+    hue-rotate(65deg)
+    saturate(65%)
+    brightness(90%);
+}
+
+</style>
+
+<!-- END TONOLAB COLOR SYSTEM -->
+
 </body>
 </html>
